@@ -3,17 +3,95 @@
 		<title>My JavaScript Slider</title>
 		<link rel="stylesheet" href="main.css" type="text/css">
 	</head>
-	<body>
+	<body onload="sliderA()">
 		<div class="slider-container">
-  		<img class="slider-img" src="images/Gill1.jpg">
-  		<img class="slider-img" src="images/Gill2.jpg">
-  		<img class="slider-img" src="images/Gill3.jpg">
-  		<div id="left-holder"><h1><</h1></div>
-  		<div id="right-holder"><h1>></h1></div>
+  		<img id="slider-img" src="images/Gill1.jpg">
+<!--
+  		Name All the images the same with a number after it. Only call the first image.
+-->
+<!--
+      Uncomment for arrows
+  		<div id="left-holder"><img onclick="slide(-1)" class="left" src="images/left-arrow.png"></div>
+  		<div id="right-holder"><img onclick="slide(1)" class="right" src="images/right-arrow.png"></div>
+-->
 		</div>
 
+
+    <style type="text/css" media="screen">
+    	.slider-container{
+          width: 160px;
+          height: 125px;
+          position: relative;
+        }
+
+        #slider-img{
+          position: absolute;
+        }
+
+        #left-holder{
+          height: 160px;
+          width: 50px;
+          left: 0px;
+          top: 0px;
+          position: absolute;
+        }
+
+
+        #right-holder{
+          height: 160px;
+          width: 50px;
+          right: 0px;
+          top: 0px;
+          position: absolute;
+        }
+
+        .left{
+          height: 50px;
+          width: 50px;
+          top: 0;
+          left: 8px;
+        }
+
+        .right{
+          height: 50px;
+          width: 50px;
+          top: 40%;
+          right: 8px;
+        }
+    </style>
 		<script>
-			
+			var imageCount = 1;
+			var total = 3;
+
+			function slide(x) {
+  			var Image = document.getElementById("slider-img");
+  			imageCount = imageCount + x;
+
+  			if(imageCount > total){
+    			imageCount = 1;
+    		}
+
+    		if(imageCount < 1){
+      		imageCount = total;
+    		}
+
+  			Image.src = "images/Gill" + imageCount + ".jpg";
+			}
+
+			window.setInterval(function slideA() {
+  			var Image = document.getElementById("slider-img");
+  			imageCount = imageCount + 1;
+
+  			if(imageCount > total){
+    			imageCount = 1;
+    		}
+
+    		if(imageCount < 1){
+      		imageCount = total;
+    		}
+
+  			Image.src = "images/Gill" + imageCount + ".jpg";
+			}, 3000);
 		</script>
 	</body>
 </html>
